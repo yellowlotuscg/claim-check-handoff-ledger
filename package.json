@@ -1,0 +1,31 @@
+{
+  "name": "claim-check-handoff-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A toy todo-app demonstration of the Claim Check integration pattern for long-running handoffs.",
+  "type": "commonjs",
+  "main": "dist/src/functions.js",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "handoff": "tsx src/cli.ts",
+    "sample": "bash examples/todo-app/scripts/make-sample-repo.sh"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.2",
+    "@azure/identity": "^4.4.1",
+    "@azure/storage-blob": "^12.26.0",
+    "@azure/storage-queue": "^12.25.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
