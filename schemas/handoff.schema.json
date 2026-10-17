@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/claim-check-handoff-ledger/handoff.schema.json",
+  "title": "Claim Check Handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "created_at", "author_role", "task", "state", "decisions", "open_items", "next_step", "source_of_truth", "claim_checks"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "author_role": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "task": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "state": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "decisions": { "type": "array", "items": { "type": "string", "maxLength": 2000 }, "maxItems": 100 },
+    "open_items": { "type": "array", "items": { "type": "string", "maxLength": 2000 }, "maxItems": 100 },
+    "next_step": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "source_of_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repo", "ref", "commit"],
+      "properties": {
+        "repo": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "ref": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "commit": { "type": "string", "pattern": "^[0-9a-fA-F]{7,64}$" }
+      }
+    },
+    "claim_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sha256", "size", "media_type", "label"],
+        "properties": {
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "size": { "type": "integer", "minimum": 0 },
+          "media_type": { "type": "string", "minLength": 1, "maxLength": 256 },
+          "label": { "type": "string", "minLength": 1, "maxLength": 512 }
+        }
+      },
+      "maxItems": 1000
+    }
+  }
+}

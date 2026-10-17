@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountName": { "value": "changemeclaimcheck" },
+    "functionAppName": { "value": "changeme-claim-check" },
+    "identityName": { "value": "changeme-claim-check-identity" },
+    "githubOwner": { "value": "example" },
+    "githubRepo": { "value": "claim-check-handoff-ledger" },
+    "githubSubject": { "value": "repo:example/claim-check-handoff-ledger:ref:refs/heads/main" },
+    "location": { "value": "eastus" }
+  }
+}
